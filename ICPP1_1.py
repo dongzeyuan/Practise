@@ -1,4 +1,5 @@
 # int()函数输出括号内整数部分
+#输入表示年月日的8位数，输出年，月，日
 
 x = int(input('<<<please enter number: '))
 

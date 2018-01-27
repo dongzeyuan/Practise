@@ -1,5 +1,5 @@
 # coding=UTF-8
-
+# 输入两个点，建立起直线方程 y=kx+b，输入第三个点，求点到直线的距离
 import math
 
 x1 = float(input('x1 = '))
