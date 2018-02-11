@@ -1,9 +1,13 @@
 # coding=UTF-8
 # 编写一个函数，计算输入的列表的最大值，最小值和平均值，并以元组的方式返回，调用该函数
 
+
 def fun1(list1):
-    list1.sort()
-    pass
+    listmin = sorted(list1)
+    listmax = sorted(list1, reverse=True)
+    equal = sum(list1) / len(list1)
+    return_tuple = (listmin[0], listmax[0], equal)
+    print(return_tuple)
 
 
 if __name__ == '__main__':
