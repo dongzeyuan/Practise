@@ -4,8 +4,8 @@
 
 def FileCopy(tar_File, res_File):
     try:
-        f = open(tar_File, 'rb')
-        f2 = open(tar_File, 'wb')
+        f = open(tar_File, 'a')
+        f2 = open(tar_File, 'a')
     except:
         print('打开文件异常')
         return -1
@@ -17,4 +17,6 @@ def FileCopy(tar_File, res_File):
 
 
 if __name__ == '__main__':
-    FileCopy(123.txt, 321.txt)
+
+# 传递参数时，用字符串传递文件名
+    FileCopy('123.txt', '321.txt')
