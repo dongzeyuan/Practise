@@ -1,5 +1,6 @@
 # coding=UTF-8
-# 对例7-13进行试验，调用函数FileCopy(tar_File,res_File)时，给形参传入一个新文件名，分析代码运行的流程
+# 对例7-13进行试验，调用函数FileCopy(tar_File,res_File)时，
+# 给形参传入一个新文件名，分析代码运行的流程
 
 
 def FileCopy(tar_File, res_File):
