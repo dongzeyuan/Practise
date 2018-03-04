@@ -10,7 +10,7 @@ class Frame1(wx.Frame):
 
 if __name__ == '__main__':
     app = wx.App()
-    frame = Frame1(none)
+    frame = Frame1(None)
     frame.Show(True)
 
-app.Mainloop()
+app.MainLoop()
