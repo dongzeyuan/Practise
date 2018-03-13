@@ -35,6 +35,10 @@ class MyFrame(wx.Frame):
         labe_tel = wx.StaticText(panel, -1, '电话',(580,20))
         text_tel = wx.TextCtrl(panel, -1, '', (580,50))
         text_tel.SetInsertionPoint(0)
+        self.button_add = wx.Button(panel, -1, '新增', pos = (20,100))
+        self.button_modify = wx.Button(panel, -1, '修改', pos = (200,100))
+        self.button_del = wx.Button(panel, -1, '删除', pos = (380,100))
+        self.button_search = wx.Button(panel, -1, '查询', pos = (560,100))
 
 if __name__ == '__main__':
     app = wx.App()
