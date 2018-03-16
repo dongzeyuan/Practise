@@ -20,6 +20,10 @@ class MyFrame(wx.Frame):
         label_index = wx.StaticText(panel, -1, '编号', pos=(x0, y0))
         self.num = wx.TextCtrl(panel, -1, "", pos=(x0, y0 + dy), size=(w, 20))
         self.num.SetEditable(False)
+<<<<<<< HEAD
+=======
+
+>>>>>>> bda235c6af81f3008893874f4207ee1230575b83
 
         label_name = wx.StaticText(panel, -1, '姓名', pos=(x0 + w + dx, y0))
         self.name = wx.TextCtrl(panel, -1, "", pos=(x0 + w + dx, y0 + dy), size=(w, 20))
@@ -32,6 +36,7 @@ class MyFrame(wx.Frame):
 
         label_qq = wx.StaticText(panel, -1, 'QQ', pos=(x0 + 4*(w + dx), y0))
         self.qq = wx.TextCtrl(panel, -1, "", pos=(x0 + 4*(w + dx), y0 + dy), size=(w, 20))
+<<<<<<< HEAD
 
         label_adres = wx.StaticText(panel, -1, '地址', pos=(x0 + 5*(w + dx), y0))
         self.adres = wx.TextCtrl(panel, -1, "", pos=(x0 + 5*(w + dx), y0 + dy), size=(w, 20))
@@ -82,6 +87,11 @@ class MyFrame(wx.Frame):
 
 
 
+=======
+
+        label_adres = wx.StaticText(panel, -1, '地址', pos=(x0 + 5*(w + dx), y0))
+        self.adres = wx.TextCtrl(panel, -1, "", pos=(x0 + 5*(w + dx), y0 + dy), size=(w, 20))
+>>>>>>> bda235c6af81f3008893874f4207ee1230575b83
 
 
 if __name__ == '__main__':
