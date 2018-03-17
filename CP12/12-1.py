@@ -66,33 +66,42 @@ class MyFrame(wx.Frame):
         self.grid = wx.grid.Grid(panel, pos=(10, 140), size=(550, 200))
         self.grid.Bind(wx.grid.EVT_GRID_RANGE_SELECT, self.OnGridSelect)
 
-        self.conn = sqlite3.connect("D:/Code/Practise/addressBook.db")
+        self.conn = sqlite3.connect('E:\Python\AddressBook.db')
         self.cur = self.conn.cursor()
 
         self.res = []
 
-        def OnGridSelect(self, event):
-            li = self.grid.GetSelectedRows()
-            if len(li) >= 1:
-                print(li[0])
-                tu = self.res[li[0]]
-                self.num.SetValue('%s' % tu[0])
-            pass
+    def OnGridSelect(self, event):
+        li = self.grid.GetSelectedRows()
+        if len(li) >= 1:
+            print(li[0])
+            tu = self.res[li[0]]
+            self.num.SetValue('%s' % tu[0])
+            self.name.SetValue('%s' % tu[1])
+            self.sex.SetValue('%s' % tu[2])
+            self.phone.SetValue('%s' % tu[3])
+            self.qq.SetValue('%s' % tu[4])
+            self.address.SetValue('%s' % tu[5])
 
-        def OnInsert(self, event):
-            pass
+    def OnInsert(self, event):
+        s = "'" + self.name.GetValue() + "','" + self.sex.GetValue() + "','"\
+            + self.phone.GetValue() + "','" + self.qq.GetValue() + "','"\
+            + self.address.GetValue() + "'"
+        sql = "insert into addressList(name,sex,phone,qq,address) values(" + s + ")"
+        self.conn.execute(sql)
+        self.conn.commit()
 
-        def OnDelete(self, event):
-            pass
+    def OnDelete(self, event):
+        pass
 
-        def OnUpdate(self, event):
-            pass
+    def OnUpdate(self, event):
+        pass
 
-        def OnSelect(self, event):
-            pass
+    def OnSelect(self, event):
+        pass
 
 
 if __name__ == '__main__':
-    app = wx.App()
+    app = wx.PySimpleApp()
     MyFrame().Show(True)
     app.MainLoop()
