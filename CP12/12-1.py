@@ -28,17 +28,18 @@ class MyFrame(wx.Frame):
         self.sex = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 2 * (w + dx), y0 + dy), size=(w, 20))
 
-        label_tel = wx.StaticText(panel, -1, '电话', pos=(x0 + 3 * (w + dx), y0))
-        self.tel = wx.TextCtrl(
+        label_phone = wx.StaticText(
+            panel, -1, '电话', pos=(x0 + 3 * (w + dx), y0))
+        self.phone = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 3 * (w + dx), y0 + dy), size=(w, 20))
 
         label_qq = wx.StaticText(panel, -1, 'QQ', pos=(x0 + 4 * (w + dx), y0))
         self.qq = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 4 * (w + dx), y0 + dy), size=(w, 20))
 
-        label_adres = wx.StaticText(
+        label_address = wx.StaticText(
             panel, -1, '地址', pos=(x0 + 5 * (w + dx), y0))
-        self.adres = wx.TextCtrl(
+        self.address = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 5 * (w + dx), y0 + dy), size=(w, 20))
 
         self.insert = wx.Button(panel, label="新增", pos=(
@@ -66,8 +67,15 @@ class MyFrame(wx.Frame):
         self.grid = wx.grid.Grid(panel, pos=(10, 140), size=(550, 200))
         self.grid.Bind(wx.grid.EVT_GRID_RANGE_SELECT, self.OnGridSelect)
 
-        self.conn = sqlite3.connect('E:\Python\AddressBook.db')
+        self.conn = sqlite3.connect('E:\Python\\addressBook.db')
         self.cur = self.conn.cursor()
+        self.cur.execute('''create table addressList(
+        ID integer primary key autoincrement,
+        name varchar(10),
+        sex varchar(6) NULL,
+        phone varchar(11) NULL,
+        QQ varchar(11) NULL,
+        address varchar(30) NULL)''')
 
         self.res = []
 
@@ -92,13 +100,49 @@ class MyFrame(wx.Frame):
         self.conn.commit()
 
     def OnDelete(self, event):
-        pass
+        if len(self.num.GetValue()) > 0:
+            dlg = wx.MessageDialog(None, "是否真要删除，删除后无法恢复！", "删除", wx.YES_NO |
+                                   wx.ICON_QUESTION)
+            if dlg.ShowModal() != wx.ID_YES:
+                return
+            sql = "delete from addressList where ID=" + self.num.GetValue()
+            self.conn.execute(sql)
+            self.conn.commit()
 
     def OnUpdate(self, event):
-        pass
+        if len(self.num.GetValue()) > 0:
+            sql = "update addressList set name = '" + self.name.GetValue() + "',sex='"\
+                + self.sex.GetValue() + "',phone='"\
+                + self.phone.GetValue() + "',qq='" + self.qq.GetValue() + "',address='"\
+                + self.address.GetValue() + "'where ID = " + self.num.GetValue()
+            self.conn.execute(sql)
+            self.conn.commit()
 
     def OnSelect(self, event):
-        pass
+        self.cur.execute(" select * from addressList ")
+        self.res = self.cur.fetchall()
+        rowNum = len(self.res)
+        colNum = len(self.cur.description)
+        if self.m == 1:
+            self.grid.DeleteRows(0, self.grid.GetNumberRows())
+            self.grid.AooendRows(rowNum)
+        if self.m == 0:
+            self.grid.CreateGrid(rowNum, colNum)
+
+        i = 0
+        for line in self.res:
+            j = 0
+            for f in line:
+                s = "%s" % f
+                self.grid.SetCellValue(i, j, s)
+                self.grid.SetReadOnly(i, j)
+                j = j + 1
+
+            i = i + 1
+        for col in range(colNum):
+            self.grid.SetColLabelValue(col, self.cur.description[col][0])
+
+        self.m = 1
 
 
 if __name__ == '__main__':
