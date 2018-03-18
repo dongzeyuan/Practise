@@ -4,20 +4,25 @@ import wx.grid
 
 
 class MyFrame(wx.Frame):
-    def __init__(self):
 
+# 开始构造函数，实际上是开始编写界面部分
+    def __init__(self):
+# 下面几个参数，和后面布局位置有关，这个用的很聪明，应该是试了很久确定的数值
         self.m = 0
         x0 = 22
         y0 = 20
         w = 90
         dx = 20
         dy = 20
-
+# 开始MyFrame框架，窗口名称叫做，通讯录管理小软件，尺寸为700*400
         wx.Frame.__init__(self, None, -1, '通讯录管理小软件', size=(700, 400))
+# 设置Panel面板
         panel = wx.Panel(self, -1)
-
+# 下面几个是设定标签，注意其中Index中的SetEditable为False
         label_index = wx.StaticText(panel, -1, '编号', pos=(x0, y0))
         self.num = wx.TextCtrl(panel, -1, "", pos=(x0, y0 + dy), size=(w, 20))
+# 设定SetEditable为False，不可编辑，从数据库中读取编号，这个做法其实并不好
+# 可以默认数据库内的编号不显示，编号这个东西，实在用处不大
         self.num.SetEditable(False)
 
         label_name = wx.StaticText(panel, -1, '姓名', pos=(x0 + w + dx, y0))
