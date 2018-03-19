@@ -24,46 +24,46 @@ class MyFrame(wx.Frame):
 # 设定SetEditable为False，不可编辑，从数据库中读取编号，这个做法其实并不好
 # 可以默认数据库内的编号不显示，编号这个东西，实在用处不大
         self.num.SetEditable(False)
-
+# 设定姓名标签栏和输入框
         label_name = wx.StaticText(panel, -1, '姓名', pos=(x0 + w + dx, y0))
         self.name = wx.TextCtrl(
             panel, -1, "", pos=(x0 + w + dx, y0 + dy), size=(w, 20))
-
+# 设定性别标签栏和输入框
         label_sex = wx.StaticText(panel, -1, '性别', pos=(x0 + 2 * (w + dx), y0))
         self.sex = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 2 * (w + dx), y0 + dy), size=(w, 20))
-
+# 设定电话标签栏和输入框
         label_phone = wx.StaticText(
             panel, -1, '电话', pos=(x0 + 3 * (w + dx), y0))
         self.phone = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 3 * (w + dx), y0 + dy), size=(w, 20))
-
+# 设定QQ标签栏和输入框
         label_qq = wx.StaticText(panel, -1, 'QQ', pos=(x0 + 4 * (w + dx), y0))
         self.qq = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 4 * (w + dx), y0 + dy), size=(w, 20))
-
+# 设定地址标签栏和输入框
         label_address = wx.StaticText(
             panel, -1, '地址', pos=(x0 + 5 * (w + dx), y0))
         self.address = wx.TextCtrl(
             panel, -1, "", pos=(x0 + 5 * (w + dx), y0 + dy), size=(w, 20))
-
+# 设定新增按钮，以及鼠标浮于按钮上时的提示说明
         self.insert = wx.Button(panel, label="新增", pos=(
             6 * x0, y0 + 3 * dy), size=(w, 25))
         self.insert.SetToolTipString("新增记录方法:\n1.在文本框中输入数据；\n2.单击此按钮以增加记录")
-
+# 设定删除按钮，以及鼠标浮于按钮上时的提示说明
         self.delete = wx.Button(panel, label='删除', pos=(
             6 * x0 + w + dx, y0 + 3 * dy), size=(w, 25))
         self.delete.SetToolTipString("删除记录方法:\n1.选择一行；\n2.单击此按钮以删除。")
-
+# 设定修改按钮，以及鼠标浮于按钮上时的提示说明
         self.update = wx.Button(panel, label='修改', pos=(
             6 * x0 + 2 * (w + dx), y0 + 3 * dy), size=(w, 25))
         self.update.SetToolTipString(
             "修改记录方法:\n1.选择一行；\n2.在文本框中进行修改；\n3.单击此按钮以保存修改。")
-
+# 设定查询按钮，以及鼠标浮于按钮上时的提示说明
         self.select = wx.Button(panel, label='查询', pos=(
             6 * x0 + 3 * (w + dx), y0 + 3 * dy), size=(w, 25))
         self.select.SetToolTipString("查询所有记录")
-
+# 设定按钮绑定
         self.Bind(wx.EVT_BUTTON, self.OnInsert, self.insert)
         self.Bind(wx.EVT_BUTTON, self.OnDelete, self.delete)
         self.Bind(wx.EVT_BUTTON, self.OnUpdate, self.update)
