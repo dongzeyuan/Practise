@@ -68,7 +68,7 @@ class MyFrame(wx.Frame):
         self.Bind(wx.EVT_BUTTON, self.OnDelete, self.delete)
         self.Bind(wx.EVT_BUTTON, self.OnUpdate, self.update)
         self.Bind(wx.EVT_BUTTON, self.OnSelect, self.select)
-
+# 布局？
         self.grid = wx.grid.Grid(panel, pos=(10, 140), size=(550, 200))
         self.grid.Bind(wx.grid.EVT_GRID_RANGE_SELECT, self.OnGridSelect)
 
