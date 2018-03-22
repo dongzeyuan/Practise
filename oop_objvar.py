@@ -62,3 +62,11 @@ if is_palindrome(something):
     print("Yes, it is a palindrome.")
 else:
     print("No,it is not a palindrome.")
+
+
+def testFun():
+    temp = [lambda x : i*x for i in range(4)]
+    return temp
+
+for everyLambda in testFun():
+    print (everyLambda(2))
