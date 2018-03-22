@@ -73,7 +73,7 @@ class MyFrame(wx.Frame):
         self.grid.Bind(wx.grid.EVT_GRID_RANGE_SELECT, self.OnGridSelect)
 # 这里开始连接数据库了
 
-        self.conn = sqlite3.connect('D:\Code\Practise\\addressBook.db')
+        self.conn = sqlite3.connect('addressBook.db')
         self.cur = self.conn.cursor()
 # 下面这条命令，创建一个表，表名为addressList，包括ID,name，sex，phone,QQ，address
 # 等表头信息，但是每次执行这个脚本时都会运行这条命令，如果之前运行过这个脚本，已经生成了
