@@ -88,7 +88,7 @@ class MyFrame(wx.Frame):
         address varchar(30) NULL)''')
 
         self.res = []
-
+# 下面进入绑定好的选择函数
     def OnGridSelect(self, event):
         li = self.grid.GetSelectedRows()
         if len(li) >= 1:
