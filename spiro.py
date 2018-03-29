@@ -83,19 +83,19 @@ class Spiro:
         # skip the rest of the steps if done
         if self.drawingComplete:
             return
-        #increment the angle
+        # increment the angle
         self.a += self.step
         # draw a step
-        R,k,l = self.R,self.k,self.l
+        R, k, l = self.R, self.k, self.l
         # set the angle
         a = math.radians(self.a)
         x = R*((1-k)*math.cos(a) + l*k*math.cos((1-k)*a/k))
         y = R*((1-k)*math.sin(a) + l*k*math.sin((1-k)*a/k))
-        self.t.setpos(self.xc+x,self.yc+y)
+        self.t.setpos(self.xc+x, self.yc+y)
         # if drawing is complete, set the flag
         if self.a >= 360*self.nRot:
             self.drawingComplete = True
-            #drawing is now done so hide the turtle cursor
+            # drawing is now done so hide the turtle cursor
             self.t.hideturtle()
 
     # clear everything
@@ -103,9 +103,11 @@ class Spiro:
         self.t.clear()
 
 # a class for animating Spirographs
+
+
 class SpiroAnimator:
     # constructor
-    def __init__(self,N):
+    def __init__(self, N):
         # set the timer value in milliseconds
         self.deltaT = 10
         # get the window dimensions
@@ -119,8 +121,33 @@ class SpiroAnimator:
             # set the spiro parameters
             spiro = Spiro(*rparams)
             self.spiros.append(spiro)
-            # call timer 
+            # call timer
             turtle.ontimer(self.update, self.deltaT)
-            
 
+    # restart spiro drwaing
+    def restart(self):
+        for spiro in self.spiros:
+            # clear
+            spiro.clear()
+            # generate random parameters
+            rparams = self.genRandomParams()
+            # set the spiro parameters
+            spiro.setparams(*rparams)
+            # restart drawing
+            spiro.restart()
 
+    # generate random parameters
+    def genRandomParams(self):
+        width, height = self.width, self.height
+        R = random.randint(50, min(width, height)//2)
+        r = random.randint(10, 9*R//10)
+        l = random.uniform(0.1, 0.9)
+        xc = random.randint(-width//2, width//2)
+        yc = random.randint(-height//2, height//2)
+        col = (random.random(),
+               random.random(),
+               random.random())
+        return (xc, yc, col, R, r, l)
+
+    def update(self):
+        
