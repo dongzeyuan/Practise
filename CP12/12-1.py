@@ -93,6 +93,7 @@ class MyFrame(wx.Frame):
         li = self.grid.GetSelectedRows()
         if len(li) >= 1:
             print(li[0])
+            
             tu = self.res[li[0]]
             self.num.SetValue('%s' % tu[0])
             self.name.SetValue('%s' % tu[1])
@@ -108,7 +109,7 @@ class MyFrame(wx.Frame):
         sql = "insert into addressList(name,sex,phone,qq,address) values(" + s + ")"
         self.conn.execute(sql)
         self.conn.commit()
-
+# 删除函数
     def OnDelete(self, event):
         if len(self.num.GetValue()) > 0:
             dlg = wx.MessageDialog(None, "是否真要删除，删除后无法恢复！", "删除", wx.YES_NO |
