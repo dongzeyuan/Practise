@@ -12,6 +12,8 @@ class MyFrame(wx.Frame):
         num_txt = wx.TextCtrl(panel,-1,'Enter the num',size=(150,25),pos=(10,30))
         num_txt.SetInsertionPoint(0)
         self.button = wx.Button(panel,-1,'确定',size=(50,25),pos = (170,30))
+
+        # 以下部分都是可以被重构的，这么写很垃圾
         ch_txt1 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10,100))
         ch_txt1.SetInsertionPoint(0)
         ch_label1 = wx.StaticText(panel,-1,'拾',size=(xc,yc),pos=(10+xc+dx,100))
