@@ -1,44 +1,35 @@
 import wx
 
+
 class MyFrame(wx.Frame):
-   
+
     def __init__(self):
         xc = 30
         yc = 25
         dx = 5
-        wx.Frame.__init__(self, None, -1, 'Num2CH', size=(500,200))
+        wx.Frame.__init__(self, None, -1, 'Num2CH', size=(500, 200))
         panel = wx.Panel(self, -1)
-        label = wx.StaticText(panel,-1,'输入阿拉伯数字',(10,10))
-        num_txt = wx.TextCtrl(panel,-1,'Enter the num',size=(150,25),pos=(10,30))
+        label = wx.StaticText(panel, -1, '输入阿拉伯数字', (10, 10))
+        num_txt = wx.TextCtrl(panel, -1, 'Enter the num',
+                              size=(150, 25), pos=(10, 30))
         num_txt.SetInsertionPoint(0)
-        self.button = wx.Button(panel,-1,'确定',size=(50,25),pos = (170,30))
+        self.button = wx.Button(panel, -1, '确定', size=(50, 25), pos=(170, 30))
 
-        # 以下部分都是可以被重构的，这么写很垃圾
-        ch_txt1 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10,100))
-        ch_txt1.SetInsertionPoint(0)
-        ch_label1 = wx.StaticText(panel,-1,'拾',size=(xc,yc),pos=(10+xc+dx,100))
-        ch_txt2 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10+2*xc,100))
-        ch_txt2.SetInsertionPoint(0)
-        ch_label2 = wx.StaticText(panel,-1,'万',size=(xc,yc),pos=(10+3*xc+dx,100))
-        ch_txt3 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10+4*xc,100))
-        ch_txt3.SetInsertionPoint(0)
-        ch_label3 = wx.StaticText(panel,-1,'仟',size=(xc,yc),pos=(10+5*xc+dx,100))
-        ch_txt4 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10+6*xc,100))
-        ch_txt4.SetInsertionPoint(0)
-        ch_label4 = wx.StaticText(panel,-1,'佰',size=(xc,yc),pos=(10+7*xc+dx,100))
-        ch_txt5 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10+8*xc,100))
-        ch_txt5.SetInsertionPoint(0)
-        ch_label5 = wx.StaticText(panel,-1,'拾',size=(xc,yc),pos=(10+9*xc+dx,100))
-        ch_txt6 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10+10*xc,100))
-        ch_txt6.SetInsertionPoint(0)
-        ch_label6 = wx.StaticText(panel,-1,'圆',size=(xc,yc),pos=(10+11*xc+dx,100))
-        ch_txt7 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10+12*xc,100))
-        ch_txt7.SetInsertionPoint(0)
-        ch_label7 = wx.StaticText(panel,-1,'角',size=(xc,yc),pos=(10+13*xc+dx,100))
-        ch_txt8 = wx.TextCtrl(panel,-1,size=(xc,yc),pos=(10+14*xc,100))
-        ch_txt8.SetInsertionPoint(0)
-        ch_label8 = wx.StaticText(panel,-1,'分',size=(xc,yc),pos=(10+15*xc+dx,100))
+        self.creatTextFields(panel)
 
+    # 以下部分都是被重构后的，这么写很优美！
+    def labelData(self):
+        return(('拾', (40, 100)), ('万', (100, 100)), ('仟', (160, 100)), ('佰', (220, 100)),
+               ('拾', (280, 100)), ('圆', (340, 100)), ('角', (400, 100)), ('分', (460, 100)))
+
+    def onelabel(self, panel, label, pos):
+        static = wx.StaticText(panel, -1, label, pos)
+        textPos = (pos[0] - 30, pos[1])
+        wx.TextCtrl(panel, -1, '', size=(25, 15), pos=textPos)
+
+    def creatTextFields(self, panel):
+        for eachlabel, eachpos in self.labelData():
+            self.onelabel(panel, eachlabel, eachpos)
 
 
 if __name__ == "__main__":
