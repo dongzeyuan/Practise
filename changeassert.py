@@ -28,3 +28,5 @@ for file_name in files:
     if portion[1] == "":
         new_name = portion[0]+'.jpg'
         os.rename(file_name, new_name)
+    else:
+        pass
