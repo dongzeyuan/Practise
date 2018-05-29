@@ -13,4 +13,4 @@ if __name__ == '__main__':
     w.setWindowTitle('Simple')  
     w.show()  
           
-    sys.exit(app.exec_()) 
+    sys.exit(app.exec_())  
