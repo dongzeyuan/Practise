@@ -1,3 +1,6 @@
+import random
+
+
 class Location(object):
     def __init__(self, x, y):
         '''x和y是数值型'''
@@ -30,15 +33,33 @@ class Field(object):
             raise ValueError('Duplicate drunk')
         else:
             self.drunks[drunk] = loc
-    
+
     def moveDrunk(self, drunk):
         if drunk not in self.drunks:
             raise ValueError('Drunk not in field')
         xDist, yDist = drunk.takeStep()
         currentLocation = self.drunks[drunk]
-        self.drunks[drunk] = currentLocation.move(xDist,yDist)
+        self.drunks[drunk] = currentLocation.move(xDist, yDist)
 
     def getLoc(self, drunk):
         if drunk not in self.drunks:
             raise ValueError('Drunk not in field')
         return self.drunns[drunk]
+
+
+class Drunk(object):
+    def __init__(self, name=None):
+    '''假设name是字符串'''
+        self.name = name
+
+    def __str__(self):
+        if self != None:
+            return self.name
+        return 'Anonymous'
+
+
+class UsualDrunk(Drunk):
+    def takeStep(self):
+        stepChoices = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        return random.choice(stepChoices)
+        return random.choice(stepChoices)
