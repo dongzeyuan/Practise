@@ -65,6 +65,24 @@ class UsualDrunk(Drunk):
         return random.choice(stepChoices)
 
 
+class ColdDrunk(Drunk):
+    def takeStep(self):
+        stepChoices = [(0.0, 1.0), (0.0, -2.0), (1.0, 0.0),
+                       (-1.0, 0.0)]
+        return random.choice(stepChoices)
+
+
+class EWDrunk(Drunk):
+    def takeStep(self):
+        stepChoices = [(1.0, 0.0), (-1.0, 0.0)]
+        return random.choice(stepChoices)
+
+
+def simAll(drunkKinds, walkLengths, numTrials):
+    for dClass in drunkKinds:
+        drunkTest(walkLengths, numTrials, dClass)
+
+
 def walk(f, d, numSteps):
     '''假设f是一个Field对象，d是f中的一个Drunk对象，numSteps是正整数，
     将d移动numSteps次，返回这次游走最终位置与开始位置之间的距离'''
@@ -101,4 +119,5 @@ def drunkTest(walkLengths, numTrials, dClass):
 
 
 if __name__ == '__main__':
-    drunkTest((10,100,1000,10000),100,UsualDrunk)
+    drunkTest((10, 100, 1000, 10000), 100, UsualDrunk)
+    simAll((UsualDrunk,ColdDrunk,EWDrunk),(100,1000),10)
