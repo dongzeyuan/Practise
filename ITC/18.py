@@ -8,7 +8,7 @@ def getData(fileName):
     masses = []
     dataFile.readline()  # ignore header
     for line in dataFile:
-        d, m = line.split('')
+        d, m = line.split(' ')
         distances.append(float(d))
         masses.append(float(m))
     dataFile.close()
@@ -28,4 +28,4 @@ def plotData(inputFile):
     pylab.show()
 
 if __name__ == '__main__':
-    plotData('springData.txt')
+    plotData('E:\Python\Practise\ITC\springData.txt')
